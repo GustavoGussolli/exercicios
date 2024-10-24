@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios</title>
+
+    <style>
+        img{
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Questão 1</h1>
+    <p>O JavaScript é essencial em aplicações frontend por vários motivos:<br>
+        -Interatividade<br>
+        -Manipulação do DOM<br>
+        -Comunicação assíncrona<br>
+        -Desenvolvimento de aplicações SPA<br>
+        -Validação de formulários<br>
+        -Integração com APIs<br>
+        -Suporte a bibliotecas e frameworks<br>
+    </p>
+
+    <h1>Questão 2</h1>
+
+    <img src="Captura de tela de 2024-10-24 14-16-16.png" alt="">  
+
+    <h1 id="exe3">Não se atreva a fazer o L!!!</h1>
+    <button onclick="modificarExe3()">Fazer o L</button>
+
+    <script>
+        function modificarExe3(){
+
+            const exe3 = document.getElementById("exe3");
+            exe3.style.color = "red";
+            exe3.style.fontSize = "50px";
+            exe3.textContent = "Você fez o L";
+        }
+
+    </script>
+
+    <h1>Questão 4</h1>
+
+    <p id="texto4"></p>
+
+    <button id="botao4">Fazer o L</button>
+
+    <script>
+
+        let contador = 0;
+        document.getElementById("botao4").onclick=function(){
+
+            contador++;
+            document.getElementById("texto4").innerText = "Voce fez o L " + contador + " vezes";
+        }
+
+    </script>
+
+    <h1>Questao 5</h1>
+
+    <ul id="minhaLista">
+
+        <li>Nine fingers</li>
+
+    </ul>
+
+    <button id="adicionarItem">Adicionar Petista</button>
+
+    <script>
+
+        document.getElementById('adicionarItem').addEventListener('click', function(){
+
+        const novoItem = document.createElement('li');
+        novoItem.textContent = 'Petista';
+        document.getElementById('minhaLista').appendChild(novoItem);
+    });
+
+    </script>
+
+    <h1>Questao 6</h1>
+
+    <button id="gerarNome">Gerar nome</button>
+    <p id="nome"></p>
+
+    <script>
+
+        function Sortear(max){
+
+            return parseInt(Math.random() * max);
+        }
+
+        const titles = ["Sr.", "Mister", "Dom", "Lord", "Lady", "Capitão", "Dama"];
+        const names = ["Arthur", "Gwendolyn", "Merlin", "Lancelot", "Morgana", "Ragnar", "Éowyn"];
+        const classes = ["Mago", "Paladino", "Arqueiro", "Ladino", "Bárbaro", "Feiticeiro", "Cavaleiro"];
+        const locations = ["Valfenda", "Gondor", "Asgard", "Camelot", "Nárnia", "Babilônia", "Atlantis"];
+
+
+        document.getElementById("gerarNome").onclick = function(){
+
+            const titulo = Sortear(7);
+            const nome = Sortear(8);
+            const classe = Sortear(7);
+            const local = Sortear(7);
+
+            document.getElementById("nome").innerText = titles[titulo] + ' ' + names[nome]
+            + ', ' + classes[classe] + ' de ' + locations[local];
+
+        }
+    </script>
+
+
+
+</body>
+</html>
