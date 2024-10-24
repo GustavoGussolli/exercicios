@@ -9,6 +9,27 @@
         img{
             height: 800px;
         }
+
+        .imagem{
+            height: 350px;
+        }
+
+        .exe7{
+            display: flex;
+            align-items: baseline;
+
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .dark-mode{
+            background-color: #333333;
+            color: #ffffff; 
+        }
+
     </style>
 </head>
 <body>
@@ -26,7 +47,9 @@
 
     <h1>Questão 2</h1>
 
-    <img src="Captura de tela de 2024-10-24 14-16-16.png" alt="">  
+    <img src="Captura de tela de 2024-10-24 14-16-16.png" alt="">
+    
+    <h1>Questão 3</h1>
 
     <h1 id="exe3">Não se atreva a fazer o L!!!</h1>
     <button onclick="modificarExe3()">Fazer o L</button>
@@ -44,9 +67,9 @@
 
     <h1>Questão 4</h1>
 
-    <p id="texto4"></p>
-
     <button id="botao4">Fazer o L</button>
+
+    <p id="texto4"></p>
 
     <script>
 
@@ -111,7 +134,162 @@
         }
     </script>
 
+    <h1>Questão 7</h1>
 
+    <div class="exe7">
+
+    <img class="imagem" src="https://www.geekno.com/pt/wp-content/uploads/sites/2/2016/08/charmander.jpeg" alt="Charmander">
+    <p id="falas"></p>
+
+    </div>
+
+    <script>
+        const imagem = document.getElementsByClassName('imagem')[0];
+        const falas = document.getElementById('falas');
+
+        imagem.addEventListener('mouseenter', () => {
+        falas.textContent = 'Oi! Eu sou a Charmander!';
+        });
+
+        imagem.addEventListener('mouseleave', () => {
+            falas.textContent = 'Ei, volte aqui! Vamos nos divertir!';
+        });
+
+        //imagem.addEventListener('mousemove', () => {
+            //falas.textContent = 'Você está me seguindo? Haha!';
+        //});
+
+        imagem.addEventListener('click', () => {
+            falas.textContent = 'Click! Agora você faz parte da minha lista de amigos!';
+        });
+    </script>
+
+    <h1>Questao 8</h1>
+
+    <input type="text" placeholder="Digite o sabor do sorvete">
+    <p id="sabor"></p>
+
+    <h1>Questão 9</h1>
+
+    <button id="toggle-mode">Alternar Modo</button>
+
+    <script>
+        const input = document.querySelector('input');
+        const text = document.getElementById('sabor');
+        const toggleButton = document.getElementById('toggle-mode');
+        let isDarkMode = false;
+
+        input.addEventListener('input', function(){
+
+            let textoDigitado = input.value;
+
+            if (textoDigitado.length > 3){
+                let textoLower = textoDigitado.toLowerCase();
+
+                if (textoLower === "chocolate") {
+                    text.innerText = "Eu amo sorvete de chocolate!";
+                } else if (textoLower === "flocos") {
+                    text.innerText = "Ahh, mas chocolate é o meu favorito...";
+                } else {
+                    text.innerText = "Ahh, eu esperava um sabor de sorvete...";
+                }
+            }
+        });
+
+
+        toggleButton.addEventListener('click', function() {
+            isDarkMode = !isDarkMode;
+
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                toggleButton.innerText = 'Alternar para Modo Claro';
+            } else {
+                document.body.classList.remove('dark-mode');
+                toggleButton.innerText = 'Alternar para Modo Escuro';
+            }
+        });
+    </script>
+
+    <h1>Questão 10</h1>
+
+    <h2>Formulário de Cadastro</h2>
+    <form id="formCadastro">
+        <label for="campoNome">Nome:</label>
+        <input type="text" id="campoNome" required>
+        <div id="erroNome" class="erro"></div>
+
+        <label for="campoEmail">E-mail:</label>
+        <input type="email" id="campoEmail" required>
+        <div id="erroEmail" class="erro"></div>
+
+        <label for="campoSenha">Senha:</label>
+        <input type="password" id="campoSenha" required>
+        <input type="checkbox" id="mostrarSenha"> Mostrar senha
+        <div id="erroSenha" class="erro"></div>
+
+        <label for="campoConfirmarSenha">Confirmar Senha:</label>
+        <input type="password" id="campoConfirmarSenha" required>
+        <div id="erroConfirmarSenha" class="erro"></div>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script>
+        const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const regexSenha = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+        document.getElementById("mostrarSenha").addEventListener("change", function() {
+            const senhaField = document.getElementById("campoSenha");
+            const confirmarSenhaField = document.getElementById("campoConfirmarSenha");
+            const tipo = senhaField.type === "password" ? "text" : "password";
+            senhaField.type = tipo;
+            confirmarSenhaField.type = tipo;
+        });
+
+        document.getElementById("formCadastro").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            document.getElementById("erroNome").textContent = "";
+            document.getElementById("erroEmail").textContent = "";
+            document.getElementById("erroSenha").textContent = "";
+            document.getElementById("erroConfirmarSenha").textContent = "";
+
+            const nome = document.getElementById("campoNome").value;
+            const email = document.getElementById("campoEmail").value;
+            const senha = document.getElementById("campoSenha").value;
+            const confirmarSenha = document.getElementById("campoConfirmarSenha").value;
+
+            let valido = true;
+
+            if (nome.length < 3) {
+                document.getElementById("erroNome").textContent = "O nome deve ter pelo menos 3 caracteres.";
+                valido = false;
+            }
+
+            if (!regexEmail.test(email)) {
+                document.getElementById("erroEmail").textContent = "E-mail inválido.";
+                valido = false;
+            }
+
+            if (!regexSenha.test(senha)) {
+                document.getElementById("erroSenha").textContent = "A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, um número e um caractere especial.";
+                valido = false;
+            }
+
+            if (senha !== confirmarSenha) {
+                document.getElementById("erroConfirmarSenha").textContent = "As senhas não coincidem.";
+                valido = false;
+            }
+
+            if (valido) {
+                alert("Cadastro realizado com sucesso!");
+               
+            }
+        });
+    </script>
+
+</body>
+</html>
 
 </body>
 </html>
