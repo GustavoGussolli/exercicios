@@ -188,7 +188,7 @@
         const input = document.querySelector('input');
         const text = document.getElementById('sabor');
         const alternarFundo = document.getElementById('alternarFundo');
-        let DarkMode = false;
+        let DarkMode = true;
 
         input.addEventListener('input', function(){
 
@@ -209,15 +209,15 @@
 
 
         alternarFundo.addEventListener('click', function(){
-            
-            if(DarkMode == false){
+
+            if(DarkMode == true){
                 document.body.classList.add('dark-mode');
                 alternarFundo.innerText = 'Alternar para Modo Claro';
-                DarkMode = true;
+                DarkMode = false;
             } else {
                 document.body.classList.remove('dark-mode');
                 alternarFundo.innerText = 'Alternar para Modo Escuro';
-                DarkMode = false;
+                DarkMode = true;
             }
         });
     </script>
