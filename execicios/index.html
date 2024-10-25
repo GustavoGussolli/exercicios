@@ -47,27 +47,27 @@
 
     <h1>Questão 2</h1>
 
-    <img src="Captura de tela de 2024-10-24 14-16-16.png" alt="">
+    <img src="Captura de tela de 2024-10-25 14-29-53.png" alt="">
     
     <h1>Questão 3</h1>
 
-    <h1 id="exe3">Não se atreva a fazer o L!!!</h1>
-    <button onclick="modificarExe3()">Fazer o L</button>
+    <h1 id="exe3">Não clique no botão</h1>
+    <button onclick="modificarExe3()">Apertar o botão</button>
 
     <script>
         function modificarExe3(){
 
             const exe3 = document.getElementById("exe3");
-            exe3.style.color = "red";
-            exe3.style.fontSize = "50px";
-            exe3.textContent = "Você fez o L";
+            exe3.style.color = "blue";
+            exe3.style.fontSize = "60px";
+            exe3.textContent = "Seu curioso";
         }
 
     </script>
 
     <h1>Questão 4</h1>
 
-    <button id="botao4">Fazer o L</button>
+    <button id="botao4">Dizer Olá</button>
 
     <p id="texto4"></p>
 
@@ -77,7 +77,7 @@
         document.getElementById("botao4").onclick=function(){
 
             contador++;
-            document.getElementById("texto4").innerText = "Voce fez o L " + contador + " vezes";
+            document.getElementById("texto4").innerText = "Você disse olá " + contador + " vezes";
         }
 
     </script>
@@ -86,18 +86,18 @@
 
     <ul id="minhaLista">
 
-        <li>Nine fingers</li>
+        <li>Patrão</li>
 
     </ul>
 
-    <button id="adicionarItem">Adicionar Petista</button>
+    <button id="adicionarItem">Adcionar CLT</button>
 
     <script>
 
         document.getElementById('adicionarItem').addEventListener('click', function(){
 
         const novoItem = document.createElement('li');
-        novoItem.textContent = 'Petista';
+        novoItem.textContent = 'CLT';
         document.getElementById('minhaLista').appendChild(novoItem);
     });
 
@@ -171,13 +171,13 @@
 
     <h1>Questão 9</h1>
 
-    <button id="toggle-mode">Alternar Modo</button>
+    <button id="alternarFundo">Alternar Modo</button>
 
     <script>
         const input = document.querySelector('input');
         const text = document.getElementById('sabor');
-        const toggleButton = document.getElementById('toggle-mode');
-        let isDarkMode = false;
+        const alternarFundo = document.getElementById('alternarFundo');
+        let DarkMode = false;
 
         input.addEventListener('input', function(){
 
@@ -197,15 +197,15 @@
         });
 
 
-        toggleButton.addEventListener('click', function() {
-            isDarkMode = !isDarkMode;
+        alternarFundo.addEventListener('click', function(){
+            DarkMode =! DarkMode;
 
-            if (isDarkMode) {
+            if(DarkMode){
                 document.body.classList.add('dark-mode');
-                toggleButton.innerText = 'Alternar para Modo Claro';
+                alternarFundo.innerText = 'Alternar para Modo Claro';
             } else {
                 document.body.classList.remove('dark-mode');
-                toggleButton.innerText = 'Alternar para Modo Escuro';
+                alternarFundo.innerText = 'Alternar para Modo Escuro';
             }
         });
     </script>
