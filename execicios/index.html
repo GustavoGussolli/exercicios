@@ -25,22 +25,10 @@
         }
 
         .erro {
-            color: tomato;
-            display: none;
+            color: red;
+            font-size: 0.9em;
         }
-
-        .grupo {
-            padding: 10px;
-        }
-
-        input {
-            outline: none;
-        }
-
-        input.invalido {
-            border: solid 2px tomato;
-        }
-
+        
     </style>
 </head>
 <body>
@@ -224,90 +212,82 @@
 
     <h1>Questão 10</h1>
 
-    <form action="">
-        
-        <div class="grupo">
-            <input type="text" placeholder="informe seu nome">
-            <span class="erro">o nome deve ter pelo menos três caracteres</span>
-        </div>
+    <h2>Formulário de Cadastro</h2>
 
-        <div class="grupo">
-            <input type="text" placeholder="inform seu e-mail">
-            <span class="erro">o email precisa ser válido</span>
-        </div>
+    <form id="formCadastro">
+        <label for="campoNome">Nome:</label>
+        <input type="text" id="campoNome" required>
+        <div id="erroNome" class="erro"></div>
 
-        <div class="grupo">
-            <input type="password" placeholder="informe sua senha">
-            <span class="erro">a senha precisa ter 8 caracteres </span>
-        </div>
+        <label for="campoEmail">E-mail:</label>
+        <input type="email" id="campoEmail" required>
+        <div id="erroEmail" class="erro"></div>
 
-        <div class="grupo">
-            <input type="password" placeholder="confirme sua senha">
-            <span class="erro">a confirmação não corresponde a senha</span>
-        </div>
+        <label for="campoSenha">Senha:</label>
+        <input type="password" id="campoSenha" required>
+        <input type="checkbox" id="mostrarSenha"> Mostrar senha
+        <div id="erroSenha" class="erro"></div>
 
-        <div class="grupo">
-            <input type="submit" value="enviar">
-        </div>
+        <label for="campoConfirmarSenha">Confirmar Senha:</label>
+        <input type="password" id="campoConfirmarSenha" required>
+        <div id="erroConfirmarSenha" class="erro"></div>
 
+        <button type="submit">Cadastrar</button>
     </form>
 
     <script>
-        const inputs = document.querySelectorAll('input');
-        const erros = document.querySelectorAll('.erro') 
+        const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const regexSenha = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
-        function validaNome(){
-            if(inputs[0].value.length <= 3){
-                console.log("digitou")
-                erros[0].style.display = 'block'
-                inputs[0].classList.add('invalido')
-            } else {
-                erros[0].style.display = 'none'
-                inputs[0].classList.remove('invalido')
-            }
-        }
+        document.getElementById("mostrarSenha").addEventListener("change", function() {
+            const senhaField = document.getElementById("campoSenha");
+            const confirmarSenhaField = document.getElementById("campoConfirmarSenha");
+            const tipo = senhaField.type === "password" ? "text" : "password";
+            senhaField.type = tipo;
+            confirmarSenhaField.type = tipo;
+        });
 
-        inputs[0].addEventListener('input', validaNome)
+        document.getElementById("formCadastro").addEventListener("submit", function(event) {
+            event.preventDefault();
 
-            function validaEmail(){
-                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-                if(!emailRegex.test(inputs[1].value)){
-                erros[1].style.display = 'block'
-                inputs[1].classList.add('invalido')
-            } else {
-                erros[1].style.display = 'none'
-                inputs[1].classList.remove('invalido')
-            }
-        }
-        inputs[1].addEventListener('input', validaEmail)
+            document.getElementById("erroNome").textContent = "";
+            document.getElementById("erroEmail").textContent = "";
+            document.getElementById("erroSenha").textContent = "";
+            document.getElementById("erroConfirmarSenha").textContent = "";
 
-        function validasenha(){
+            const nome = document.getElementById("campoNome").value;
+            const email = document.getElementById("campoEmail").value;
+            const senha = document.getElementById("campoSenha").value;
+            const confirmarSenha = document.getElementById("campoConfirmarSenha").value;
 
-            const senhaRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            let valido = true;
 
-            if(!senhaRegex.test(inputs[2].value)){
-                
-            } else{
-
+            if (nome.length < 3) {
+                document.getElementById("erroNome").textContent = "O nome deve ter pelo menos 3 caracteres.";
+                valido = false;
             }
 
-        }
-
-        inputs[2].addEventListener('input', validasenha);
-
-        function confirmaSenha(){
-
-            if(inputs[3].valur != inputs[2]){
-                
-            } else{
-
+            if (!regexEmail.test(email)) {
+                document.getElementById("erroEmail").textContent = "E-mail inválido.";
+                valido = false;
             }
-        }
 
-        input[3].addEventListener('input', confirmaSenha);
+            if (!regexSenha.test(senha)) {
+                document.getElementById("erroSenha").textContent = "A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, um número e um caractere especial.";
+                valido = false;
+            }
 
+            if (senha !== confirmarSenha) {
+                document.getElementById("erroConfirmarSenha").textContent = "As senhas não coincidem.";
+                valido = false;
+            }
+
+            if (valido) {
+                alert("Cadastro realizado com sucesso!");
+               
+            }
+        });
     </script>
-
 
 </body>
 </html>
