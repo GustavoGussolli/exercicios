@@ -10,14 +10,8 @@
             height: 800px;
         }
 
-        .imagem{
+        #imagem{
             height: 350px;
-        }
-
-        .exe7{
-            display: flex;
-            align-items: baseline;
-
         }
 
         body {
@@ -138,13 +132,13 @@
 
     <div class="exe7">
 
-    <img class="imagem" src="https://www.geekno.com/pt/wp-content/uploads/sites/2/2016/08/charmander.jpeg" alt="Charmander">
+    <img id="imagem" src="https://www.geekno.com/pt/wp-content/uploads/sites/2/2016/08/charmander.jpeg" alt="Charmander">
     <p id="falas"></p>
 
     </div>
 
     <script>
-        const imagem = document.getElementsByClassName('imagem')[0];
+        const imagem = document.getElementById('imagem');
         const falas = document.getElementById('falas');
 
         imagem.addEventListener('mouseenter', () => {
@@ -184,11 +178,11 @@
             let textoDigitado = input.value;
 
             if (textoDigitado.length > 3){
-                let textoLower = textoDigitado.toLowerCase();
+                let texto = textoDigitado.toLowerCase();//Essa função deixa tudo o texto digitado em minusculo
 
-                if (textoLower === "chocolate") {
+                if (texto === "chocolate") {
                     text.innerText = "Eu amo sorvete de chocolate!";
-                } else if (textoLower === "flocos") {
+                } else if (texto === "flocos") {
                     text.innerText = "Ahh, mas chocolate é o meu favorito...";
                 } else {
                     text.innerText = "Ahh, eu esperava um sabor de sorvete...";
